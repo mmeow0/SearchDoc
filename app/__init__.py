@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 from flask import Flask
-from config import Config
+from config.config import Config
 from flask_sqlalchemy import SQLAlchemy
 
 es = Elasticsearch()
