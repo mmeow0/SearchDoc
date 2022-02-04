@@ -1,11 +1,11 @@
 from flask import render_template
 from app import app
-from app.settings import ELASTICSEARCH_URL
+from config import Config
 
 
 @app.route('/')
 def home():
-   return str(ELASTICSEARCH_URL)
+   return str(Config.ELASTICSEARCH_URL)
 
 @app.route('/template')
 def template():
