@@ -1,6 +1,14 @@
 from app.search import add_to_index, remove_from_index, query_index
+import db as db2
 from app import db
 
+
+class Post(db.Model):
+    __searchable__ = ['id', 'text']
+    id = db.Column(db.Integer, primary_key=True)
+    rubrucs= db.Column(db.ARRAY(db.String))
+    text = db.Column(db.String)
+    created_date = db.Column(db.DateTime, nullable=False)
 
 
 class SearchableMixin(object):
@@ -45,12 +53,5 @@ db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit)
 db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
 
 
-class Post(SearchableMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    rubrucs= db.Column(db.ARRAY(db.String(150)))
-    text = db.Column(db.String(140))
-    created_date = db.Column(db.DateTime, nullable=False)
 
-    def __repr__(self):
-        return '<Post {}>'.format(self.body)
 
