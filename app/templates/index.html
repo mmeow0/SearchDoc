@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      .box{
+        width: 200px;
+      }
+
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SearchApp</title>
+</head>
+
+<body>
+<div>
+    <h2 class="font-light text-white m-0">SearchApp</h2>
+</div>
+<div class="pl-60 ml-96">
+    <form action="/search" method="POST">
+        <input type="text" placeholder="Search here..." name="search"
+               class="border-2 box border-gray-700 mt-10 w-2/5 py-3 px-4"></input>
+        <button class="bg-blue-700 text-xl hover:bg-blue-500 text-white py-2 px-3">
+            Search
+        </button>
+    </form>
+</div>
+<div class="pl-60 ml-96">
+    <form action="/delete" method="POST">
+        <input type="text" placeholder="Delete by id here..." name="delete"
+               class="border-2 box border-gray-700 mt-10 w-2/5 py-3 px-4"></input>
+        <button class="bg-blue-700 text-xl hover:bg-blue-500 text-white py-2 px-3">
+            Delete
+        </button>
+    </form>
+</div>
+{% block content %}
+<div>
+    <h2 class="text-gray-800 font-bold pl-2/5 mt-10">{{ info }}</h2>
+</div>
+
+<div>
+    <div class="grid gap-8 grid-cols-3 mt-5 ">
+
+        <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+
+        </style>
+        <table class="tg" style="undefined;table-layout: fixed; width: 507px">
+            <colgroup>
+                <col style="width: 250px">
+                <col style="width: 200px">
+                <col style="width: 500px">
+                <col style="width: 160px">
+            </colgroup>
+            <thead>
+            <tr>
+                <th class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">Id</span>
+                </th>
+                <th class="tg-0lax"><span
+                        style="font-weight:normal;font-style:normal;text-decoration:none">Rubrics</span></th>
+                <th class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">Text</span>
+                </th>
+                <th class="tg-0lax"><span
+                        style="font-weight:normal;font-style:normal;text-decoration:none">Created date</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in data %}
+            <tr>
+                <td class="tg-0lax">{{ post['id'] }}</td>
+                <td class="tg-0lax">{{ post['rubrics'] }}</td>
+                <td class="tg-0lax">{{ post['text'] }}</td>
+                <td class="tg-0lax">{{ post['created_date'] }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+</body>
+
+</html>
