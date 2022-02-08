@@ -36,7 +36,10 @@ def search_es():
 def delete_es():
     if request.method == 'POST':
         id = request.form['delete']
-    res = app.elasticsearch.delete(index="posts", doc_type='_doc', id=id)
+        if id:
+            res = app.elasticsearch.delete(index="posts", doc_type='_doc', id=id)
+        else:
+            return render_template("delete.html", data="Вы не ввели id!")
     if "result" in res and res["result"] == "deleted":
         res="Post deleted"
     else:
