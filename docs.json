@@ -1,0 +1,54 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "SearchApp"
+  },
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "index"
+        ],
+        "summary": "index page"
+      }
+    },
+    "/search": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Search by text",
+        "description": "Search by text in database",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/delete": {
+      "post": {
+        "tags": [
+          "delete"
+        ],
+        "summary": "Delete by id",
+        "description": "Delete by id",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  }
+}
