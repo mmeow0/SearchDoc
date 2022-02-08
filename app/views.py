@@ -1,6 +1,8 @@
+import re
+
+import elasticsearch
 from flask import render_template, request
 from app import app
-
 
 
 @app.route('/')
@@ -37,12 +39,10 @@ def delete_es():
     if request.method == 'POST':
         id = request.form['delete']
         if id:
-            res = app.elasticsearch.delete(index="posts", doc_type='_doc', id=id)
-        else:
-            return render_template("delete.html", data="Вы не ввели id!")
-    if "result" in res and res["result"] == "deleted":
-        res="Post deleted"
-    else:
-        res = "Error while deleting"
-    return render_template("delete.html", data=res)
+            try:
+                app.elasticsearch.delete(index="posts", doc_type='_doc', id=id)
+            except elasticsearch.exceptions.NotFoundError:
+                return render_template("delete.html", data="Error while deleting: no such id")
+        else: return render_template("delete.html", data="Вы не ввели Id")
+    return render_template("delete.html", data="Post deleted")
 
