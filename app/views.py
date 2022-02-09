@@ -1,5 +1,3 @@
-import re
-
 import elasticsearch
 from flask import render_template, request
 from app import app
@@ -22,6 +20,7 @@ def search_es():
                 "fields": ["text"]}},
             'size': 20}
     )
+    info=""
     posts = [{"id": data["_id"],
               "text": data["_source"]["text"],
               "rubrics": data["_source"]["rubrics"],
